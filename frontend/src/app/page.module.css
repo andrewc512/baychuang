@@ -26,11 +26,6 @@
     /* border: 2px solid #fca5a5; */
   }
 
-  /* .heartIcon {
-    width: 2rem;
-    height: 2rem;
-  }
-   */
   .form {
     display: flex;
     flex-direction: column;
@@ -105,10 +100,12 @@
   .category {
     font-size: 1.125rem;
     color: #991b1b;
+    font-family: "Arial", sans-serif;
   }
   
   .category span {
     font-weight: 600;
+    font-family: "Arial", sans-serif;
   }
   
   .severityContainer {
@@ -121,6 +118,7 @@
     font-weight: 500;
     color: #dc2626;
     margin-bottom: 1rem;
+    font-family: "Arial", sans-serif;
   }
   
   .sliderContainer {
@@ -155,11 +153,13 @@
     margin-top: 0.5rem;
     color: #dc2626;
     font-size: 0.875rem;
+    font-family: "Arial", sans-serif;
   }
   
   .sliderLabels span {
     width: 1.5rem;
     text-align: center;
+    font-family: "Arial", sans-serif;
   }
   
   .severityValue {
@@ -168,6 +168,7 @@
     font-size: 1.125rem;
     font-weight: 500;
     color: #991b1b;
+    font-family: "Arial", sans-serif;
   }
   
   

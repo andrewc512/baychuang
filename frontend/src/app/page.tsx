@@ -127,26 +127,45 @@ export default function Home() {
                       borderRadius: "0.5rem"
                     }}
                   >
-                    <strong>Suggestions:</strong>
+                    <strong>Baymax replies:</strong>
                     <br /> {/* Adds a line break for spacing */}
                     {help}
                   </div>
                 </div>
               </div>
             )}
-            <div>
-              <h2>Relevant Posts</h2>
-              {/* <button onClick={() => fetchRelevantPosts(severity, category)}>Fetch Posts</button> */}
-              {posts.length > 0 ? (
-                <ul className="list-disc pl-4">
-                  {posts.map((post, index) => (
-                    <li key={index} className="mb-2">{post.text}</li>
-                  ))}
-                </ul>
-              ) : (
-                <p>No posts available.</p>
-              )}
-            </div>
+            
+            {category && help && (
+              <div className={styles.results}>
+                <div 
+                  className={styles.category} 
+                  style={{
+                    fontSize: "1.2rem",
+                    color: "#b91c1c",
+                    lineHeight: "1.8",
+                    textAlign: "center",
+                    padding: "1rem",
+                    borderRadius: "0.5rem"
+                  }}
+                >
+                  <strong>You're not alone!</strong>
+                  <br />
+                  <b className="text-red-700 text-lg font-bold tracking-wide">
+                    Relevant posts
+                  </b>
+                  {posts.length > 0 ? (
+                    <ul style={{ listStyleType: "disc", paddingLeft: "1.5rem", textAlign: "left" }}>
+                      {posts.map((post, index) => (
+                        <li key={index} style={{ marginBottom: "0.2rem" }}>{post.text}</li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p>No posts available.</p>
+                  )}
+                </div>
+              </div>
+            )}
+
           </CardContent>
         </Card>
       </div>
