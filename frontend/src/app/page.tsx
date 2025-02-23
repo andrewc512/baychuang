@@ -19,12 +19,8 @@ export default function Home() {
   const [help, setHelp] = useState("");
   const [posts, setPosts] = useState<RedditPost[]>([]);
   const [error, setError] = useState<string | null>(null);
-  const [showIframe, setShowIframe] = useState(false); // State to control iframe rendering
-
-  useEffect(() => {
-    // This will ensure that the iframe only renders on the client
-    setShowIframe(true);
-  }, []);
+  const [showTableau, setShowTableau] = useState(false);
+  const [tableauKey, setTableauKey] = useState(0);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -44,6 +40,8 @@ export default function Home() {
       setSeverity(data.severity);
       setHelp(data.help);
       await fetchRelevantPosts(data.severity, data.category);
+      setShowTableau(true);
+      setTableauKey((prevKey) => prevKey + 1);
     } else {
       setCategory("Error: Unable to fetch data");
     }
@@ -184,7 +182,7 @@ export default function Home() {
               </div>
             )}
             <div className={styles.tableauContainer}>
-              <TableauEmbed />
+              {showTableau && <TableauEmbed key={tableauKey}/>}
             </div>
           </CardContent>
         </Card>
