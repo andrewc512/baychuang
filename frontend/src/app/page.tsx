@@ -1,11 +1,14 @@
 "use client"
 
 import type React from "react"
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Card, CardHeader, CardContent } from "./card"
-// import { Heart } from "lucide-react"
 import styles from "./page.module.css"
 import Header from "./header"
+
+type RedditPost = {
+  text: string;
+};
 
 export default function Home() {
   const [input, setInput] = useState("")
@@ -13,6 +16,8 @@ export default function Home() {
   const [category, setCategory] = useState("")
   const [severity, setSeverity] = useState(0)
   const [help, setHelp] = useState("")
+  const [posts, setPosts] = useState<RedditPost[]>([]);
+  const [error, setError] = useState<string | null>(null);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -36,6 +41,28 @@ export default function Home() {
     }
     setIsLoading(false)
   }
+
+  const fetchRelevantPosts = async (severity: number, category: string) => {
+    try {
+      const response = await fetch("http://localhost:8000/get_posts", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ severity, category }),
+      });
+
+      if (!response.ok) {
+        throw new Error("Failed to fetch posts");
+      }
+
+      const data = await response.json();
+      // console.log(data);
+      setPosts(data.map((post: { Text: string }) => ({ text: post.Text }))); // Ensure correct typing
+    } catch (error: any) {
+      setError(error.message);
+    }
+  };
 
   return (
     <>
@@ -89,6 +116,23 @@ export default function Home() {
                 <div className={styles.help}>
                   {help}
                 </div>
+              )}
+            </div>
+            <div>
+              <button
+                onClick={() => fetchRelevantPosts(severity, category)}
+                className={styles.button}
+              >
+                Get Relevant Posts
+              </button>
+              {posts.length > 0 ? (
+                <ul className="list-disc pl-4">
+                  {posts.map((post, index) => (
+                    <li key={index} className="mb-2">{post.text}</li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No posts available.</p>
               )}
             </div>
           </CardContent>
