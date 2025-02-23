@@ -4,6 +4,7 @@ from pydantic import BaseModel
 import asyncio  # For async sleep
 from groq import Groq
 from dotenv import load_dotenv
+import pandas as pd
 import time
 import os
 
@@ -25,6 +26,43 @@ load_dotenv()
 # Initialize Groq API
 groq_API = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=groq_API)
+
+# Load the dataset once when the server starts
+DATA_PATH = os.path.join(os.path.dirname(__file__), "data", "reddit_post.csv")
+df = pd.read_csv(DATA_PATH)
+
+# Request model for fetching posts
+class PostFetchRequest(BaseModel):
+    severity: int
+    category: str
+
+@app.post("/get_posts")
+def get_posts(data: PostFetchRequest):
+    severity = data.severity
+    category = data.category.strip().lower()  # Normalize category
+
+    # Ensure category is valid
+    valid_categories = ["depression", "anxiety", "mental illness"]
+    if category not in valid_categories:
+        raise HTTPException(status_code=400, detail="Invalid category provided")
+
+    # Filter by category
+    filtered_df = df[df["Subreddit"].str.lower() == category].copy()
+
+    if filtered_df.empty:
+        raise HTTPException(status_code=404, detail="No posts found for this category")
+
+    # Convert 'severity' column to numeric, if it's not already
+    filtered_df['Rating'] = pd.to_numeric(filtered_df['Rating'], errors='coerce')
+
+    # Sort by closest severity score
+    filtered_df.loc[:, "severity_diff"] = abs(filtered_df["Rating"] - severity)
+    sorted_df = filtered_df.sort_values(by="severity_diff").head(3)
+
+    # Convert to JSON
+    result = sorted_df[["Text"]].to_dict(orient="records")
+    return result
+
 
 class PostInput(BaseModel):
     text: str
