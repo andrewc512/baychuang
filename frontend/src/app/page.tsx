@@ -113,13 +113,27 @@ export default function Home() {
                 </div>
               </div>
             )}
-            <div className="text-lg font-medium p-5">
-              {help && (
-                <div className={styles.help}>
-                  {help}
+            {help && (
+              <div className={styles.results}>
+                <div className="text-lg font-medium p-5">
+                  <div 
+                    className={styles.help} 
+                    style={{
+                      fontSize: "1.2rem",
+                      color: "#b91c1c",
+                      lineHeight: "1.8",
+                      textAlign: "center",
+                      padding: "1rem",
+                      borderRadius: "0.5rem"
+                    }}
+                  >
+                    <strong>Suggestions:</strong>
+                    <br /> {/* Adds a line break for spacing */}
+                    {help}
+                  </div>
                 </div>
-              )}
-            </div>
+              </div>
+            )}
             <div>
               <h2>Relevant Posts</h2>
               {/* <button onClick={() => fetchRelevantPosts(severity, category)}>Fetch Posts</button> */}
