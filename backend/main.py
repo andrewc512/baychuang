@@ -3,6 +3,8 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 import asyncio  # For async sleep
 from groq import Groq
+from dotenv import load_dotenv
+import time
 import os
 
 # Initialize FastAPI
@@ -18,10 +20,10 @@ app.add_middleware(
 )
 
 # Load environment variables
-# load_dotenv()
+load_dotenv()
 
 # Initialize Groq API
-groq_API = "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"
+groq_API = os.getenv("GROQ_API_KEY")
 client = Groq(api_key=groq_API)
 
 class PostInput(BaseModel):
@@ -64,13 +66,32 @@ def severity_rating(content: str):
         return severity
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error fetching severity rating: {str(e)}")
+    
+def provide_help(content: str):
+    try:
+        asyncio.sleep(3)  # Replaced time.sleep with async sleep
+        messages = [
+            {"role": "system", "content": "null"},
+            {
+                "role": "user",
+                "content": f"Based on the content provided, please provide a brief response with some helpful advice or resources for the user. \n\n {content}. The output should be a helpful response to lessen the severity of the user's situation. If they are already in a good mood, just say something nice.",
+            },
+        ]
+        chat_completion = client.chat.completions.create(
+            temperature=0.15, messages=messages, model="llama3-70b-8192", n=1
+        )
+        help = chat_completion.choices[0].message.content
+        return help
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Error fetching help: {str(e)}")
 
 @app.post("/analyze")
 async def analyze_post(post: PostInput):
     try:
         category = categorize_reddit_content(post.text)  # Non-async function
         severity = severity_rating(post.text)  # Non-async function
-        return {"category": category, "severity": int(severity)}  # Ensure severity is an integer
+        help = provide_help(post.text)
+        return {"category": category, "severity": int(severity), "help": help}  # Ensure severity is an integer
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Error processing the post: {str(e)}")
 

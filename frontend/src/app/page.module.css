@@ -18,6 +18,14 @@
     font-family: "Arial", sans-serif;
   }
   
+  .help{
+    font-family: "Arial", sans-serif;
+    /* font-size: 1.5rem; */
+    color: #dc2626;
+    padding: 0.5rem;
+    /* border: 2px solid #fca5a5; */
+  }
+
   /* .heartIcon {
     width: 2rem;
     height: 2rem;
