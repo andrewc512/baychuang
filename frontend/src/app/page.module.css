@@ -1,180 +1,180 @@
 .container {
-    min-height: 100vh;
-    background-color: #fee2e2;
-    padding: 5rem 1rem 3rem 1rem; /* Increased top padding to account for fixed header */
-  }
-  
-  .header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.75rem;
-    color: #dc2626;
-  }
-  
-  .header h2 {
-    font-size: 2rem;
-    font-weight: bold;
-    font-family: "Arial", sans-serif;
-  }
-  
-  .help{
-    font-family: "Arial", sans-serif;
-    /* font-size: 1.5rem; */
-    color: #dc2626;
-    padding: 0.5rem;
-    /* border: 2px solid #fca5a5; */
-  }
+  min-height: 100vh;
+  background-color: #fee2e2;
+  padding: 5rem 1rem 3rem 1rem; /* Increased top padding to account for fixed header */
+}
 
-  /* .heartIcon {
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  color: #dc2626;
+}
+
+.header h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  font-family: "Arial", sans-serif;
+}
+
+.help {
+  font-family: "Arial", sans-serif;
+  /* font-size: 1.5rem; */
+  color: #dc2626;
+  padding: 0.5rem;
+  /* border: 2px solid #fca5a5; */
+}
+
+/* .heartIcon {
     width: 2rem;
     height: 2rem;
   }
    */
-  .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
-    margin-top: 1.5rem;
-  }
-  
-  .inputGroup {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
-  }
-  
-  .inputGroup label {
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: #dc2626;
-    font-family: "Arial", sans-serif;
-  }
-  
-  .inputGroup textarea {
-    width: 95%;
-    min-height: 160px;
-    padding: 1rem;
-    border: 2px solid #fca5a5;
-    border-radius: 0.5rem;
-    font-size: 1rem;
-    color: #991b1b;
-    resize: vertical;
-  }
-  
-  .inputGroup textarea:focus {
-    outline: none;
-    border-color: #dc2626;
-    box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
-  }
-  
-  .inputGroup textarea::placeholder {
-    color: #fca5a5;
-  }
-  
-  .form button {
-    width: 100%;
-    padding: 0.875rem 1.5rem;
-    font-size: 1.125rem;
-    font-weight: 600;
-    color: white;
-    background-color: #dc2626;
-    border: none;
-    border-radius: 0.5rem;
-    cursor: pointer;
-    transition: background-color 0.2s;
-  }
-  
-  .form button:hover:not(:disabled) {
-    background-color: #b91c1c;
-  }
-  
-  .form button:disabled {
-    opacity: 0.5;
-    cursor: not-allowed;
-  }
-  
-  .results {
-    margin-top: 1.5rem;
-    padding: 1.5rem;
-    background-color: white;
-    border: 2px solid #fca5a5;
-    border-radius: 0.5rem;
-  }
-  
-  .category {
-    font-size: 1.125rem;
-    color: #991b1b;
-  }
-  
-  .category span {
-    font-weight: 600;
-  }
-  
-  .severityContainer {
-    margin-top: 1.5rem;
-  }
-  
-  .severityContainer label {
-    display: block;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #dc2626;
-    margin-bottom: 1rem;
-  }
-  
-  .sliderContainer {
-    position: relative;
-  }
-  
-  .sliderContainer input[type="range"] {
-    width: 100%;
-    height: 0.75rem;
-    background-color: #fecaca;
-    border-radius: 0.25rem;
-    appearance: none;
-    cursor: pointer;
-  }
-  
-  .sliderContainer input[type="range"]::-webkit-slider-thumb {
-    appearance: none;
-    width: 1.5rem;
-    height: 1.5rem;
-    background-color: #dc2626;
-    border-radius: 50%;
-    cursor: pointer;
-  }
-  
-  .sliderContainer input[type="range"]:disabled {
-    opacity: 0.7;
-  }
-  
-  .sliderLabels {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 0.5rem;
-    color: #dc2626;
-    font-size: 0.875rem;
-  }
-  
-  .sliderLabels span {
-    width: 1.5rem;
-    text-align: center;
-  }
-  
-  .severityValue {
-    text-align: center;
-    margin-top: 1rem;
-    font-size: 1.125rem;
-    font-weight: 500;
-    color: #991b1b;
-  }
-  
-  
-  .tableauContainer{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 1.5rem;
-    width: 100%;
-  }
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-top: 1.5rem;
+}
+
+.inputGroup {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.inputGroup label {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #dc2626;
+  font-family: "Arial", sans-serif;
+}
+
+.inputGroup textarea {
+  width: 95%;
+  min-height: 160px;
+  padding: 1rem;
+  border: 2px solid #fca5a5;
+  border-radius: 0.5rem;
+  font-size: 1rem;
+  color: #991b1b;
+  resize: vertical;
+}
+
+.inputGroup textarea:focus {
+  outline: none;
+  border-color: #dc2626;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
+}
+
+.inputGroup textarea::placeholder {
+  color: #fca5a5;
+}
+
+.form button {
+  width: 100%;
+  padding: 0.875rem 1.5rem;
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: white;
+  background-color: #dc2626;
+  border: none;
+  border-radius: 0.5rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.form button:hover:not(:disabled) {
+  background-color: #b91c1c;
+}
+
+.form button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.results {
+  margin-top: 1.5rem;
+  padding: 1.5rem;
+  background-color: white;
+  border: 2px solid #fca5a5;
+  border-radius: 0.5rem;
+}
+
+.category {
+  font-size: 1.125rem;
+  color: #991b1b;
+}
+
+.category span {
+  font-weight: 600;
+}
+
+.severityContainer {
+  margin-top: 1.5rem;
+}
+
+.severityContainer label {
+  display: block;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #dc2626;
+  margin-bottom: 1rem;
+}
+
+.sliderContainer {
+  position: relative;
+}
+
+.sliderContainer input[type="range"] {
+  width: 100%;
+  height: 0.75rem;
+  background-color: #fecaca;
+  border-radius: 0.25rem;
+  appearance: none;
+  cursor: pointer;
+}
+
+.sliderContainer input[type="range"]::-webkit-slider-thumb {
+  appearance: none;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: #dc2626;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.sliderContainer input[type="range"]:disabled {
+  opacity: 0.7;
+}
+
+.sliderLabels {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 0.5rem;
+  color: #dc2626;
+  font-size: 0.875rem;
+}
+
+.sliderLabels span {
+  width: 1.5rem;
+  text-align: center;
+}
+
+.severityValue {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #991b1b;
+}
+
+.tableauContainer {
+  width: 100%;
+  max-width: 100vw;
+  height: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
