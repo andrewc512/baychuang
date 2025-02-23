@@ -1,0 +1,18 @@
+# FastAPI & Web Server
+fastapi
+uvicorn
+
+# Web Requests
+requests
+
+# Reddit Scraping (PRAW - Python Reddit API Wrapper)
+praw
+
+# Data Processing
+pandas
+
+# AI Model Interaction (Groq API)
+groq
+
+# Background Tasks (Optional, for scheduling scraping)
+celery

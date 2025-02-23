@@ -6,24 +6,32 @@ import { useState } from "react"
 export default function Home() {
   const [input, setInput] = useState("")
   const [isLoading, setIsLoading] = useState(false)
-  const [response, setResponse] = useState("")
+  const [category, setCategory] = useState("")
   const [severity, setSeverity] = useState(0)
 
 
   async function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setIsLoading(true)
-    const res = await fetch("/api/sentiment", {
+    e.preventDefault();
+    setIsLoading(true);
+
+    // Send the input to the backend for analysis
+    const res = await fetch("http://localhost:8000/analyze", {  // Backend API URL
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ text: input }),
-    })
-    const data = await res.json()
-    setResponse(data.sentiment); // Changed `data.response` to `data.sentiment`
-    setSeverity(data.severity || 1);
-    setIsLoading(false)
+      body: JSON.stringify({ text: input }), // Send the text input to backend
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      // Update response with the data from the backend
+      setCategory(data.category);  // Backend returns 'category' (Depression, Anxiety, Mental Illness)
+      setSeverity(data.severity);  // Backend returns 'severity' (a number)
+    } else {
+      setCategory("Error: Unable to fetch data");
+    }
+    setIsLoading(false);
   }
 
   return (
@@ -51,14 +59,10 @@ export default function Home() {
           {isLoading ? "Analyzing..." : "Analyze Sentiment"}
         </button>
       </form>
-      {response && (
-        <div className="mt-4 p-4 bg-gray-100 rounded-lg">
-          <p className="text-lg font-semibold">
-            Sentiment:{" "}
-            <span className={`text-${severity === 0 ? "red" : severity === 1 ? "yellow" : "green"}-500`}>
-              {response}
-            </span>
-          </p>
+      {category && (
+        <div className="mt-4">
+          <p><strong>Category:</strong> {category}</p>
+          <p><strong>Severity:</strong> {severity}/10</p>
         </div>
       )}
     </div>
