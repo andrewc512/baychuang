@@ -102,7 +102,7 @@ export default function Home() {
               </button>
             </form>
 
-<!--             {category && (
+            {category && (
               <div className={styles.results}>
                 <div className={styles.category}>
                   <span>Category:</span> {category}
@@ -151,12 +151,12 @@ export default function Home() {
                   </div>
                 </div>
               </div>
-            )} -->
-            
+            )}
+
             {category && help && (
               <div className={styles.results}>
-                <div 
-                  className={styles.category} 
+                <div
+                  className={styles.category}
                   style={{
                     fontSize: "1.2rem",
                     color: "#b91c1c",
@@ -186,7 +186,6 @@ export default function Home() {
             <div className={styles.tableauContainer}>
               <TableauEmbed />
             </div>
-
           </CardContent>
         </Card>
       </div>
