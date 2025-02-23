@@ -9,7 +9,7 @@ export default function TableauEmbed() {
     script.src = "https://public.tableau.com/javascripts/api/viz_v1.js";
     script.async = true;
     script.onload = () => {
-      const divElement = document.getElementById("viz1740345926556");
+      const divElement = document.getElementById("viz1740350539775");
       const vizElement = divElement?.getElementsByTagName("object")[0];
 
       if (vizElement) {
@@ -33,7 +33,7 @@ export default function TableauEmbed() {
   return (
     <div
       className="tableauPlaceholder"
-      id="viz1740345926556"
+      id="viz1740350539775"
       style={{
         position: "relative",
         width: "100%",
@@ -45,17 +45,15 @@ export default function TableauEmbed() {
         __html: `
           <noscript>
             <a href="#">
-              <img alt="Anxiety rating distribution" src="https://public.tableau.com/static/images/Ba/BayChuang/2/1_rss.png" style="border: none" />
+              <img alt="Anxiety" src="https://public.tableau.com/static/images/29/298KD4YRJ/1_rss.png" style="border: none" />
             </a>
           </noscript>
           <object class="tableauViz" style="width: 100%; height: 100%; min-height: 500px;">
             <param name="host_url" value="https://public.tableau.com/" />
             <param name="embed_code_version" value="3" />
-            <param name="site_root" value="" />
-            <param name="name" value="BayChuang/2" />
-            <param name="tabs" value="no" />
+            <param name="path" value="shared/298KD4YRJ" />
             <param name="toolbar" value="yes" />
-            <param name="static_image" value="https://public.tableau.com/static/images/Ba/BayChuang/2/1.png" />
+            <param name="static_image" value="https://public.tableau.com/static/images/29/298KD4YRJ/1.png" />
             <param name="animate_transition" value="yes" />
             <param name="display_static_image" value="yes" />
             <param name="display_spinner" value="yes" />
