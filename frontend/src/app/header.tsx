@@ -1,9 +1,10 @@
 import styles from "./header.module.css"
+import Image from 'next/image'
 
 export default function Header() {
   return (
     <header className={styles.header}>
-      <h1>BayChuang</h1>
+      <Image src="/baymax.png" alt="baymax" width={70} height={70} />
     </header>
   )
 }
