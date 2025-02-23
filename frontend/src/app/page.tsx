@@ -5,6 +5,7 @@ import { useEffect, useState } from "react"
 import { Card, CardHeader, CardContent } from "./card"
 import styles from "./page.module.css"
 import Header from "./header"
+import TableauEmbed from "./components/TableauEmbed"
 
 type RedditPost = {
   text: string;
@@ -18,6 +19,12 @@ export default function Home() {
   const [help, setHelp] = useState("")
   const [posts, setPosts] = useState<RedditPost[]>([]);
   const [error, setError] = useState<string | null>(null);
+  const [showIframe, setShowIframe] = useState(false); // State to control iframe rendering
+
+  useEffect(() => {
+    // This will ensure that the iframe only renders on the client
+    setShowIframe(true);
+  }, []);
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -136,7 +143,6 @@ export default function Home() {
             )}
             <div>
               <h2>Relevant Posts</h2>
-              {/* <button onClick={() => fetchRelevantPosts(severity, category)}>Fetch Posts</button> */}
               {posts.length > 0 ? (
                 <ul className="list-disc pl-4">
                   {posts.map((post, index) => (
@@ -147,9 +153,13 @@ export default function Home() {
                 <p>No posts available.</p>
               )}
             </div>
+            <div className={styles.tableauContainer}>
+            <TableauEmbed />
+            </div>
           </CardContent>
         </Card>
       </div>
     </>
+
   )
 }
