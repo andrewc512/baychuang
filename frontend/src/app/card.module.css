@@ -1,0 +1,16 @@
+.card {
+  max-width: 48rem;
+  margin: 0 auto;
+  background-color: white;
+  border-radius: 0.5rem;
+  border: 1px solid #fca5a5;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+.cardHeader {
+  padding: 1.5rem;
+}
+
+.cardContent {
+  padding: 0 1.5rem 1.5rem 1.5rem;
+}
