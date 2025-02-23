@@ -12,6 +12,7 @@ export default function Home() {
   const [isLoading, setIsLoading] = useState(false)
   const [category, setCategory] = useState("")
   const [severity, setSeverity] = useState(0)
+  const [help, setHelp] = useState("")
 
   async function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -29,6 +30,7 @@ export default function Home() {
       const data = await res.json()
       setCategory(data.category)
       setSeverity(data.severity)
+      setHelp(data.help)
     } else {
       setCategory("Error: Unable to fetch data")
     }
@@ -36,56 +38,63 @@ export default function Home() {
   }
 
   return (
-  <>
-  <Header />
-    <div className={styles.container}>
-      <Card>
-        <CardHeader>
-          <div className={styles.header}>
-            {/* <Heart className={styles.heartIcon} /> */}
-            <h2>BayChuang helps you!</h2>
-          </div>
-        </CardHeader>
-        <CardContent>
-          <form onSubmit={handleSubmit} className={styles.form}>
-            <div className={styles.inputGroup}>
-              <label htmlFor="userInput">Describe how you're feeling:</label>
-              <textarea
-                id="userInput"
-                value={input}
-                onChange={(e) => setInput(e.target.value)}
-                required
-                placeholder="Type your thoughts here..."
-              />
+    <>
+      <Header />
+      <div className={styles.container}>
+        <Card>
+          <CardHeader>
+            <div className={styles.header}>
+              {/* <Heart className={styles.heartIcon} /> */}
+              <h2>BayChuang helps you!</h2>
             </div>
-            <button type="submit" disabled={isLoading}>
-              {isLoading ? "Analyzing..." : "Analyze Sentiment"}
-            </button>
-          </form>
-
-          {category && (
-            <div className={styles.results}>
-              <div className={styles.category}>
-                <span>Category:</span> {category}
+          </CardHeader>
+          <CardContent>
+            <form onSubmit={handleSubmit} className={styles.form}>
+              <div className={styles.inputGroup}>
+                <label htmlFor="userInput">Describe how you're feeling:</label>
+                <textarea
+                  id="userInput"
+                  value={input}
+                  onChange={(e) => setInput(e.target.value)}
+                  required
+                  placeholder="Type your thoughts here..."
+                />
               </div>
+              <button type="submit" disabled={isLoading}>
+                {isLoading ? "Analyzing..." : "Analyze Sentiment"}
+              </button>
+            </form>
 
-              <div className={styles.severityContainer}>
-                <label htmlFor="slider">Sentiment Severity (1-10):</label>
-                <div className={styles.sliderContainer}>
-                  <input id="slider" type="range" min="1" max="10" value={severity} disabled />
-                  <div className={styles.sliderLabels}>
-                    {Array.from({ length: 10 }, (_, i) => (
-                      <span key={i}>{i + 1}</span>
-                    ))}
-                  </div>
+            {category && (
+              <div className={styles.results}>
+                <div className={styles.category}>
+                  <span>Category:</span> {category}
                 </div>
-                <div className={styles.severityValue}>Severity: {severity}</div>
+
+                <div className={styles.severityContainer}>
+                  <label htmlFor="slider">Sentiment Severity (1-10):</label>
+                  <div className={styles.sliderContainer}>
+                    <input id="slider" type="range" min="1" max="10" value={severity} disabled />
+                    <div className={styles.sliderLabels}>
+                      {Array.from({ length: 10 }, (_, i) => (
+                        <span key={i}>{i + 1}</span>
+                      ))}
+                    </div>
+                  </div>
+                  <div className={styles.severityValue}>Severity: {severity}</div>
+                </div>
               </div>
+            )}
+            <div className="text-lg font-medium p-5">
+              {help && (
+                <div className={styles.help}>
+                  {help}
+                </div>
+              )}
             </div>
-          )}
-        </CardContent>
-      </Card>
-    </div>
+          </CardContent>
+        </Card>
+      </div>
     </>
   )
 }
