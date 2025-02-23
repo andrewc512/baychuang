@@ -167,7 +167,7 @@ export default function Home() {
                   <strong>You're not alone!</strong>
                   <br />
                   <b className="text-red-700 text-lg font-bold tracking-wide">
-                    Relevant posts
+                    Relevant posts on Reddit
                   </b>
                   {posts.length > 0 ? (
                     <ul style={{ listStyleType: "disc", paddingLeft: "1.5rem", textAlign: "left" }}>
