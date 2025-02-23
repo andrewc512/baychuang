@@ -36,9 +36,11 @@ export default function Home() {
       setCategory(data.category)
       setSeverity(data.severity)
       setHelp(data.help)
+      await fetchRelevantPosts(data.severity, data.category)
     } else {
       setCategory("Error: Unable to fetch data")
     }
+
     setIsLoading(false)
   }
 
@@ -119,12 +121,8 @@ export default function Home() {
               )}
             </div>
             <div>
-              <button
-                onClick={() => fetchRelevantPosts(severity, category)}
-                className={styles.button}
-              >
-                Get Relevant Posts
-              </button>
+              <h2>Relevant Posts</h2>
+              {/* <button onClick={() => fetchRelevantPosts(severity, category)}>Fetch Posts</button> */}
               {posts.length > 0 ? (
                 <ul className="list-disc pl-4">
                   {posts.map((post, index) => (
