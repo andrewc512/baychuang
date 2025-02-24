@@ -1,4 +1,4 @@
-# BayChuang
+# BayMaxxing
 
 [![Link to Devpost]()
 
